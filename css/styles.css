@@ -1,8 +1,9 @@
 @import "reset.css";
 
 /* 스크롤 부드럽게 */
+/* y 축 방향으로만 scroll snap 적용 */
 html {
-    scroll-snap-type: y mandatory; /* y 축 방향으로만 scroll snap 적용 */
+    scroll-snap-type: y mandatory; 
   }
 
 body {
@@ -88,6 +89,7 @@ form {
     height: 100%;
     /* 헤더 높이만큼 패딩값 주기 */
     padding-top: 208.48px;
+    overflow-y: scroll;
     /* display: grid; */
     /* grid-template-rows: 8vh max-content; */
 }
@@ -103,7 +105,6 @@ form {
     grid-template-rows: repeat(auto-fit, minmax(720px, 1fr));
     grid-auto-columns: 1fr;
     grid-auto-rows: 800px;
-    overflow-y: scroll;
     justify-items: center;
 }
 
