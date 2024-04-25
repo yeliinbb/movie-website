@@ -9,15 +9,6 @@ const options = {
   };
 
 let movie_list;
-      
-// fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
-//     .then(response => response.json()) //영화 리스트
-//     .then(response => {
-//       let movie_list = response['id'];
-//       console.log(movie_list)
-//       // console.log(response)
-//     })
-//     .catch(err => console.error(err));
 
 fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
     .then(response => response.json()) // Promise -> resolve
@@ -25,17 +16,16 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
       movie_list = data;
       const movie_list_keys = Object.keys(data) //data배열의 key값들을 가져오기
       const movie_list_values = data.results; //영화 정보가 담겨있는 results 값(배열) 가져오기
-      // console.log(data.results[0].id);
       const movie_list_keys_id = []; //값을 담을 빈 배열을 만들어주기
       for (let element of movie_list_values) {
         //배열을 순회하면서 각 객체 안에 있는 id값 새로운 배열에 넣어주기
         movie_list_keys_id.push(element.id)
       }
-      console.log(movie_list_keys_id);
+      // console.log(movie_list_keys_id);
       movie_list_values.forEach(element => {
         movieCardsBox.innerHTML += `
         <div class="movie__box-wrapper">
-        <div class="movie__box" onclick="alert(${element.id})" >
+        <div class="movie__box" onclick="alert('영화 id : ${element.id}')" >
             <div class="movie__contents" id="${element.id}" token interpolation="('${element.id}')">
                 <div class="movie__content">
                     <img class="movie__img" src=${`https://image.tmdb.org/t/p/w400` + element.poster_path} >
@@ -50,87 +40,100 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         </div> 
         `;
       });
-
-      //배열을 순회하면서 각각의 버튼 클릭 이벤트 넣어줌.
-      for(let i = 0; i < movieCards.length; i++) {
-        movieCards[i].addEventListener("click", movieCardClick);
-      }
-      //forEach는 왜 적용이 안되는지?
-      // movieCards.forEach(element => {
-      //   movieCards[i].addEventListener("click", movieCardClick);
-      // })
-
-      function movieCardClick (element) {
-          alert(element);
-      }
-      console.log(movie_list_values[i]);
     })
+
+//onclick="alert(`영화 id : ${element.id}`)"
 
 //외부에서 함수 안에 movie_list를 사용하는 건 가능
 // movie_list = new Array(response);
-// console.log(movie_list);
+
+// console.log(movie_list); //undefined : 되는 이유는 아직 데이터 값을 받아오지 못해서, 데이터를 받아오는 시간이 필요하기 때문이다.
+
+const movieBoxWrapper = document.querySelectorAll(".movie__box-wrapper");
+const movieCardsBox = document.querySelector(".movies");
+const movieCards = document.querySelectorAll(".movie__box"); //박스들 가져오기?
+const form = document.querySelector("form");
+const input = document.querySelector("input");
+const btn = document.querySelector(".search__btn");
+const movieTitles = document.querySelectorAll(".card-title");
+const movieInfos = document.querySelectorAll(".movie__sum");
+
+
+// console.dir(input);
+
+const onSubmit = (event) => {
+  event.preventDefault()
+  const inputValue = input.value;
+  const inputValueLowercase = inputValue.toLowerCase();
+  // const movieInfoLowercase = movieInfo.textContent.toLowerCase();
+  // const movieTitleLowercase = movieTitle.textContent.toLowerCase();
+  
+  if (inputValue === "") {
+    alert("please fill in the blank.");
+  } 
+  console.log("click", inputValueLowercase);
+  //movie_list_values에 inputValue값이 있다면, 없는 나머지를 제외해주기
+  // let newMovieTitles =[];
+  // let newMovieInfos = [];
+  // 무비카드 자체를 안 보이게 해야하기 때문에 사용 필요.
+  const movieBoxWrapper = document.querySelectorAll(".movie__box-wrapper"); //forEach나 for in을 사용해서 조건문 실행.
+  console.log(movieBoxWrapper);
+
+  movieBoxWrapper.forEach((element) => {
+    // const id = movieCards.indexOf(i).id;
+    // console.log(id);
+    if (element.textContent.includes(inputValueLowercase)) {
+      document.querySelector(".movie__box-wrapper").style.display = '';
+    } else {
+      document.querySelector(".movie__box-wrapper").style.display = 'none';
+    }
+    console.log(element.textContent.includes(inputValueLowercase));
+
+  });
+  
+
+
+    // for(let i = 0; i < movieTitles.length; i++) {
+    //   // newMovieTitles.push(movieTitles[i].textContent.toLowerCase());
+    //   // newMovieInfos.push(movieInfos[i].textContent.toLowerCase());
+    //   let newMovieTitles = movieTitles[i].textContent.toLowerCase();
+    //   let newMovieInfos = movieInfos[i].textContent.toLowerCase();
+    //   const id = movieTitles[i].parentElement.parentElement.id;
+
+    //   // const result = newMovieTitles.filter((inputValueLowercase) => {});
+    //   if (newMovieTitles.includes(inputValueLowercase) || newMovieInfos.includes(inputValueLowercase)) {
+    //     document.getElementById(id).style.display = '';
+    //   } else {
+    //     document.getElementById(id).style.display = 'none';
+    //   }
+    // }
+    // console.log(newMovieTitles);
+    // let newMovieTitles = movieTitles.map(function(movieTitles) {
+    //   return movieTitles.textContent.toLowerCase();
+    // });
+}
+
+form.addEventListener("submit", onSubmit);
+
 
 //1. 영화카드 선택 시 id값 들어간 alert 창 띄우기
 //1-1. 영화 카드 id값 변수로 지정해주기
 //1-2. 영화카드 누를 때 이벤트리스너 추가하기
-const movieCards = document.querySelectorAll(".movie__box"); //박스들 가져오기?
-//박스 각각의 id 값을 가져오기 
-const movieCardsBox = document.querySelector(".movies");
-
-
-
-// const createMovieCard = function(movie) {
-//   movie = {id, title, overview, poster_path, vote_average};
+// function movieCardClick (a) {
+//   alert(a);
 // }
-const createMovieCard = movie => {
-  const {id, title, overview, poster_path, vote_average} = movie;
-}
 
-const card = document.createElement('div');
-const img = document.createElement('img');
-const titleElement = document.createElement('h3');
-const overviewElement = document.createElement('p');
-const voteAverageElement = document.createElement('span');
-
-card.className = 'movie-card';
-img.className = 'poster-image';
-titleElement.className = 'title';
-overviewElement.className = 'overview';
-voteAverageElement.className = 'vote-average';
-
-// movie_list_values.forEach(element => {
-//     card.append(img);
-//     card.append(titleElement);
-//     card.append(overviewElement);
-//     card.append(voteAverageElement);
-
-//   return card;
-// });
+// //배열을 순회하면서 각각의 버튼 클릭 이벤트 넣어줌.
+// for(let i = 0; i < movieCards.length; i++) {
+//     movieCards[i].addEventListener("click", movieCardClick(data.results[i].id));
+// }
 
 
 
+//forEach는 왜 적용이 안되는지? return을 안 하기 때문에?
+// movieCards.forEach(element => {
+//   movieCards[i].addEventListener("click", movieCardClick);
+// })
 
-// let image;
-// let title;
-// let content;
-// let rate;
 
-// let temp_html = `            
-//     <div class="movie__box-wrapper">
-//     <div class="movie__box">
-//         <div class="movie__contents">
-//             <div class="movie__content">
-//                 <img class="movie__img" src="${image}" >
-//                 <h3 class="movie__title">${title}</h3>
-//                 <p class="movie__sum">${content}</p>
-//             </div>
-//             <div class="rate__box">
-//                 <span class="movie__rate">${rate}</span>
-//             </div>
-//         </div>
-//     </div>
-//     </div> 
-// `;
-
-// movieCardsBox.append(temp_html);
 
