@@ -22,12 +22,9 @@ let movie_list;
 fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
     .then(response => response.json()) // Promise -> resolve
     .then(data => {
+      movie_list = data;
       const movie_list_keys = Object.keys(data) //data배열의 key값들을 가져오기
-      console.log(movie_list_keys); 
-      //배열의 메서드 내용 확인 필요
-      //results를 순회하면서 각 순번의 id값 확인
       const movie_list_values = data.results; //영화 정보가 담겨있는 results 값(배열) 가져오기
-      console.log(data.results);
       // console.log(data.results[0].id);
       const movie_list_keys_id = []; //값을 담을 빈 배열을 만들어주기
       for (let element of movie_list_values) {
@@ -38,10 +35,10 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
       movie_list_values.forEach(element => {
         movieCardsBox.innerHTML += `
         <div class="movie__box-wrapper">
-        <div class="movie__box">
+        <div class="movie__box" onclick="alert(${element.id})" >
             <div class="movie__contents" id="${element.id}" token interpolation="('${element.id}')">
                 <div class="movie__content">
-                    <img class="movie__img" src=${`https://image.tmdb.org/t/p/w400` + element.backdrop_path} >
+                    <img class="movie__img" src=${`https://image.tmdb.org/t/p/w400` + element.poster_path} >
                     <h3 class="movie__title" id="card-title">${element.original_title}</h3>
                     <p class="movie__sum">${element.overview}</p>
                 </div>
@@ -53,6 +50,20 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         </div> 
         `;
       });
+
+      //배열을 순회하면서 각각의 버튼 클릭 이벤트 넣어줌.
+      for(let i = 0; i < movieCards.length; i++) {
+        movieCards[i].addEventListener("click", movieCardClick);
+      }
+      //forEach는 왜 적용이 안되는지?
+      // movieCards.forEach(element => {
+      //   movieCards[i].addEventListener("click", movieCardClick);
+      // })
+
+      function movieCardClick (element) {
+          alert(element);
+      }
+      console.log(movie_list_values[i]);
     })
 
 //외부에서 함수 안에 movie_list를 사용하는 건 가능
@@ -66,23 +77,7 @@ const movieCards = document.querySelectorAll(".movie__box"); //박스들 가져�
 //박스 각각의 id 값을 가져오기 
 const movieCardsBox = document.querySelector(".movies");
 
-//배열을 순회하면서 각각의 버튼 클릭 이벤트 넣어줌.
-for(let i = 0; i < movieCards.length; i++) {
-  movieCards[i].addEventListener("click", movieCardClick);
-  // alert("각각의 id값");
-}
-//forEach는 왜 적용이 안되는지?
-// movieCards.forEach(element => {
-//   movieCards[i].addEventListener("click", movieCardClick);
-// })
 
-function movieCardClick () {
-  // movie_list_keys_id.forEach(element => {
-  //   alert(`movie_list_keys_id[0]`);
-  // }) 
-  alert("각각의 id값");
-  console.log("각각의 id값");
-}
 
 // const createMovieCard = function(movie) {
 //   movie = {id, title, overview, poster_path, vote_average};
