@@ -15,6 +15,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
     .then(data => {
       movie_list = data;
       const movie_list_keys = Object.keys(data) //data배열의 key값들을 가져오기
+      //불러온 데이터를 변수에 할당해준다
       const movie_list_values = data.results; //영화 정보가 담겨있는 results 값(배열) 가져오기
       const movie_list_keys_id = []; //값을 담을 빈 배열을 만들어주기
       for (let element of movie_list_values) {
@@ -42,7 +43,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
       });
     })
 
-//onclick="alert(`영화 id : ${element.id}`)"
+// onclick="alert('영화 id : ${element.id}')"
 
 //외부에서 함수 안에 movie_list를 사용하는 건 가능
 // movie_list = new Array(response);
@@ -55,8 +56,6 @@ const movieCards = document.querySelectorAll(".movie__box"); //박스들 가져�
 const form = document.querySelector("form");
 const input = document.querySelector("input");
 const btn = document.querySelector(".search__btn");
-const movieTitles = document.querySelectorAll(".card-title");
-const movieInfos = document.querySelectorAll(".movie__sum");
 
 
 // console.dir(input);
@@ -69,7 +68,7 @@ const onSubmit = (event) => {
   // const movieTitleLowercase = movieTitle.textContent.toLowerCase();
   
   if (inputValue === "") {
-    alert("please fill in the blank.");
+    alert("Please fill in the blank.");
   } 
   console.log("click", inputValueLowercase);
   //movie_list_values에 inputValue값이 있다면, 없는 나머지를 제외해주기
@@ -79,38 +78,48 @@ const onSubmit = (event) => {
   const movieBoxWrapper = document.querySelectorAll(".movie__box-wrapper"); //forEach나 for in을 사용해서 조건문 실행.
   console.log(movieBoxWrapper);
 
-  movieBoxWrapper.forEach((element) => {
-    // const id = movieCards.indexOf(i).id;
-    // console.log(id);
-    if (element.textContent.includes(inputValueLowercase)) {
-      document.querySelector(".movie__box-wrapper").style.display = '';
-    } else {
-      document.querySelector(".movie__box-wrapper").style.display = 'none';
-    }
-    console.log(element.textContent.includes(inputValueLowercase));
-
-  });
+  // movieBoxWrapper.forEach((element, index) => {
+  //   // const id = movieCards.indexOf(i).id;
+  //   // console.log(id);
+  //   const textContent = element.textContent;
+  //   if (textContent.includes(inputValueLowercase)) {
+  //     document.querySelectorAll(".movie__box-wrapper")[index].style.display = '';
+  //     console.log("Found it");
+  //   } else {
+  //     document.querySelectorAll(".movie__box-wrapper")[index].style.display = 'none';
+  //   }
+  //   console.log(textContent.includes(inputValueLowercase));
+    
+  // });
   
 
+    // newMovieTitles.push(movieTitles[i].textContent.toLowerCase());
+    // newMovieInfos.push(movieInfos[i].textContent.toLowerCase());
 
-    // for(let i = 0; i < movieTitles.length; i++) {
-    //   // newMovieTitles.push(movieTitles[i].textContent.toLowerCase());
-    //   // newMovieInfos.push(movieInfos[i].textContent.toLowerCase());
-    //   let newMovieTitles = movieTitles[i].textContent.toLowerCase();
-    //   let newMovieInfos = movieInfos[i].textContent.toLowerCase();
-    //   const id = movieTitles[i].parentElement.parentElement.id;
+    for(let i = 0; i < movieBoxWrapper.length; i++) {
+      const element = movieBoxWrapper[i]
+      const newMovieTexts = element.textContent.toLowerCase();
+      // const id = movieTitles[i].parentElement.parentElement.id;
 
-    //   // const result = newMovieTitles.filter((inputValueLowercase) => {});
-    //   if (newMovieTitles.includes(inputValueLowercase) || newMovieInfos.includes(inputValueLowercase)) {
-    //     document.getElementById(id).style.display = '';
-    //   } else {
-    //     document.getElementById(id).style.display = 'none';
-    //   }
-    // }
-    // console.log(newMovieTitles);
-    // let newMovieTitles = movieTitles.map(function(movieTitles) {
+      // const result = newMovieTitles.filter((inputValueLowercase) => {});
+      if (newMovieTexts.includes(inputValueLowercase)) {
+        movieBoxWrapper[i].style.display = '';
+      } else {
+        movieBoxWrapper[i].style.display = 'none';
+      }
+    }
+    
+    // let newMovieBox = movieBoxWrapper.map(function(movieTitles) {
     //   return movieTitles.textContent.toLowerCase();
     // });
+
+    //Enter 키 입력해도 값 처리하기
+    function enterKey () {
+      if (window.event,keyCode === 13) {
+        form.submit();
+      }
+    }
+
 }
 
 form.addEventListener("submit", onSubmit);
@@ -119,13 +128,13 @@ form.addEventListener("submit", onSubmit);
 //1. 영화카드 선택 시 id값 들어간 alert 창 띄우기
 //1-1. 영화 카드 id값 변수로 지정해주기
 //1-2. 영화카드 누를 때 이벤트리스너 추가하기
+//1-3. 배열을 순회하면서 각각의 버튼 클릭 이벤트 넣어줌.
 // function movieCardClick (a) {
-//   alert(a);
+//   alert("영화 id : " + a);
 // }
 
-// //배열을 순회하면서 각각의 버튼 클릭 이벤트 넣어줌.
 // for(let i = 0; i < movieCards.length; i++) {
-//     movieCards[i].addEventListener("click", movieCardClick(data.results[i].id));
+//     movieCards[i].addEventListener("click", movieCardClick(movieCards[i].id));
 // }
 
 
