@@ -12,6 +12,7 @@ body {
     width: 100vw;
     height: 100vh;
     align-items: center;
+    justify-content: center;
     box-sizing: border-box;
     /* body에 grid를 쓰는 것은 좋지 않다. */
     /* display: grid; */
@@ -20,12 +21,12 @@ body {
 
 .header {
     background-color: white;
-    width: 100%;
-    /* height: 211px; */
-    height: fit-content;
+    width: 100vw;
+    height: 180px;
+    /* height: fit-content; */
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 99;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,15 +36,34 @@ body {
 /* 브라우저 자체에 적용되는 h1에 대한 레이아웃 값이 있기 때문에 따로 마진 적용 */
 /* 헤더 높이 px로 쓰려면 높이갚 고정 필요 */
 .header > h1 {
-    margin-top: 10px;
+    margin-top: 20px;
+    height: 90px;
     font-size: 5em;
     font-weight: 700;
     text-transform: uppercase;
 }
+
+/* 화면 너비 740px 이하인 경우 */
+@media screen and (max-width: 740px) {
+    .header > h1 {
+        /* margin-top: 20px; */
+        height: 90px;
+        font-size: 3em;
+        font-weight: 600;
+        text-align: center;
+        /* margin-bottom: 10px; */
+        box-sizing: border-box;
+    }
+    .search__title {
+        display: none;
+    }
+
+  }
+
 /* 헤더 높이 px로 쓰려면 높이갚 고정 필요 */
 .search__box {
     width: 100%;
-    height: 8vh;
+    height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,9 +110,9 @@ form {
 
 .main {
     width: 100%;
-    height: 100%;
+    height: calc(100vh-180px);
     /* 헤더 높이만큼 패딩값 주기 */
-    padding-top: 210px;
+    padding-top: 190px;
     /* overflow-y: scroll; */
     overflow-x: hidden;
     /* display: grid; */
@@ -105,16 +125,16 @@ form {
     /* gap: 2px; */
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(460px,1fr));
     /* grid-template-rows: repeat(auto-fit, minmax(600px, 1fr)); */
-    grid-template-rows: repeat(auto-fit, minmax(720px, 1fr));
-    grid-auto-columns: 1fr;
+    grid-template-rows: repeat(auto-fill, minmax(720px, 1fr));
     grid-auto-rows: 800px;
     justify-items: center;
 }
 
 .movie__box-wrapper {
     /* background-color: white; */
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,10 +142,10 @@ form {
 
 /* 원하는 사이즈의 무비 박스를 정해두고, 내용물이 넘치면 보이지 않도록 한다. */
 .movie__box {
-    width: 100%;
+    width: 300px;
     /* 컨텐츠에 박스 높이를 맞추고 싶을 때, 하지만 이럴 경우 박스 사이즈가 일정하지 않아 일단은 사용 x */
     /* height: fit-content; */
-    height: 650px;
+    height: 680px;
     background-color: whitesmoke;
     border-radius: 15px;
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.15);
@@ -140,7 +160,7 @@ form {
 /* 화면 너비 740px 이하인 경우 */
 @media screen and (max-width: 740px) {
     .movie__box {
-        height: 730px;
+        height: 680px;
     }
   }
 
@@ -156,7 +176,6 @@ form {
 }
 
 .movie__content {
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -193,9 +212,35 @@ img {
     font-size: 0.95em;
     font-weight: 400;
     line-height: 120%;
+    /* height: 110px;
+    overflow: hidden; */
+    /* 로 ... 을 만들기  */
+    text-overflow: ellipsis;  	
+    /* 아래줄로 내려가는 것을 막기위해 */
+    /* white-space: nowrap; */
+    /* 줄바꿈을 할때 단어를 기준으로 설정 */
+    word-break:break-all;
 }
 
 .movie__rate {
     font-size: 0.95em;
     font-weight: 600;
 }
+
+
+/* body{
+    -ms-overflow-style: none;
+    }
+    
+   ::-webkit-scrollbar {
+     display: none;
+   } */
+   
+   /*특정 부분 스크롤바 없애기*/
+   
+   /* .box{
+      -ms-overflow-style: none;
+   }
+   .box::-webkit-scrollbar{
+     display:none;
+   } */
