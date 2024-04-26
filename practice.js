@@ -7,6 +7,13 @@ const options = {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNWQzMTE4NjI2ODdhMDFmMjdhZTA5ZDNmY2ZmOGRkYyIsInN1YiI6IjY2Mjg2Y2RiNjNkOTM3MDE2NDczYmY3NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GUzdeMYC_A_-Ghz52xUS95SXKKzQk1wAf79RJyGuAS8'
     }
   };
+  
+  //처음 가져온 API 형태
+  fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
+    .then(response => response.json()) //json으로 파싱. 데이터 주고 받을 떄 주로 사용.
+    .then(response => console.log(response)) //파싱된 형태여서 js에서 사용 가능.
+    .catch(err => console.error(err));
+
 
       
 // fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
@@ -67,3 +74,18 @@ const createMovieCard = movie => {
   // `;
   
   // movieCardsBox.append(temp_html);
+
+
+      //배열 순회하면서 input값이 없는 text는 "display : none" 으로 바꿔주기
+      for(let i = 0; i < movieBoxWrapper.length; i++) {
+        const element = movieBoxWrapper[i]
+        const newMovieTexts = element.textContent.toLowerCase();
+        // const id = movieBoxWrapper[i].id;
+  
+        // const result = newMovieTitles.filter((inputValueLowercase) => {});
+        if (newMovieTexts.includes(inputValueLowercase)) {
+          movieBoxWrapper[i].style.display = '';
+        } else {
+          movieBoxWrapper[i].style.display = 'none';
+        }
+      }
