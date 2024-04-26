@@ -14,7 +14,8 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
     .then(response => response.json()) // Promise -> resolve
     .then(data => {
       movie_list = data;
-      const movie_list_keys = Object.keys(data) //data배열의 key값들을 가져오기
+      // const movie_list_keys = Object.keys(data) //data배열의 key값들을 가져오기
+      // console.log(movie_list_keys);
       //불러온 데이터를 변수에 할당해준다
       const movie_list_values = data.results; //영화 정보가 담겨있는 results 값(배열) 가져오기
       const movie_list_keys_id = []; //값을 담을 빈 배열을 만들어주기
@@ -24,7 +25,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
       }
       // console.log(movie_list_keys_id);
       movie_list_values.forEach(element => {
-        movieCardsBox.innerHTML += `
+        document.querySelector(".movies").innerHTML += `
         <div class="movie__box-wrapper">
         <div class="movie__box" onclick="alert('영화 id : ${element.id}')" >
             <div class="movie__contents" id="${element.id}" token interpolation="('${element.id}')">
