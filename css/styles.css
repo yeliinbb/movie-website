@@ -2,30 +2,34 @@
 
 /* 스크롤 부드럽게 */
 /* y 축 방향으로만 scroll snap 적용 */
-html {
+/* html {
     scroll-snap-type: y mandatory; 
-  }
+  } */
 
 body {
-    margin: 0%;
-    padding: 0%;
+    margin-top: 0%;
+    padding: 2px;
     width: 100vw;
     height: 100vh;
     align-items: center;
     justify-content: center;
+    overflow-x: hidden;
     box-sizing: border-box;
+    background-color: #F4F5C1;
     /* body에 grid를 쓰는 것은 좋지 않다. */
     /* display: grid; */
     /* grid-template-rows: 1fr max-content; */
 }
 
+
+
 .header {
-    background-color: white;
+    color: #F4F5C1;
     width: 100vw;
     height: 180px;
     /* height: fit-content; */
     position: fixed;
-    top: 0;
+    top: 1;
     z-index: 99;
     display: flex;
     flex-direction: column;
@@ -36,105 +40,133 @@ body {
 /* 브라우저 자체에 적용되는 h1에 대한 레이아웃 값이 있기 때문에 따로 마진 적용 */
 /* 헤더 높이 px로 쓰려면 높이갚 고정 필요 */
 .header > h1 {
-    margin-top: 20px;
+    background-color: black;
+    padding-top: 15px;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    border-radius: 30px;
     height: 90px;
-    font-size: 5em;
+    font-size: 4.5em;
     font-weight: 700;
     text-transform: uppercase;
+    margin-bottom: 3px;
 }
 
-/* 화면 너비 740px 이하인 경우 */
-@media screen and (max-width: 740px) {
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/ 
+@media all and (min-width:768px) and (max-width:1023px) {
     .header > h1 {
-        /* margin-top: 20px; */
-        height: 90px;
+        height: 20px;
         font-size: 3em;
         font-weight: 600;
         text-align: center;
-        /* margin-bottom: 10px; */
+        margin-bottom: 27px;
+        box-sizing: border-box;
+    }
+  } 
+
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px) */
+@media screen and (max-width: 767px) {
+    .header > h1 {
+        height: 20px;
+        font-size: 29px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 10px;
         box-sizing: border-box;
     }
     .search__title {
         display: none;
     }
-
   }
 
 /* 헤더 높이 px로 쓰려면 높이갚 고정 필요 */
 .search__box {
+    background-color: black;
+    border-radius: 30px;
     width: 100%;
     height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    background-color: whitesmoke;
 }
 
 form {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* position: relative; */
 }
 
 .search__title {
-    font-size: 1.4em;
+    font-size: 1.7em;
     font-weight: 600;
+    margin-right: 10px;
 }
 
 #search {
-    margin: 0px 10px;
-    width: 13vw;
+    margin-right: 10px;
+    width: 320px;
+    height: 20px;
     border: none;
     border-radius: 10px;
     padding: 10px;
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
     font-size: 1em;
     font-weight: 400;
+    background-color: whitesmoke;
 }
 
 .search__btn {
-    /* position: absolute;
-    left: 22vw;
-    z-index: 99; */
-    width: 100px;
-    height: 35px;
+    width: 45px;
+    height: 40px;
     border-radius: 10px;
-    background-color: black;
-    color: white;
+    background-color: whitesmoke;
+    color: black;
     font-size: 1em;
     font-weight: 500;
 }
 
-.main {
-    width: 100%;
-    height: calc(100vh-180px);
-    /* 헤더 높이만큼 패딩값 주기 */
-    padding-top: 190px;
-    /* overflow-y: scroll; */
-    overflow-x: hidden;
-    /* display: grid; */
-    /* grid-template-rows: 8vh max-content; */
+.search__btn:hover {
+    background-color: #F40101;
 }
 
+.empty {
+    height: 180px;
+}
+
+.main {
+    width: 100vw;
+    height: calc(100vh - 180px);
+    padding-top: 3px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+}
+
+/* ( 크롬, 사파리, 오페라, 엣지 ) 동작 */
+.scroll::-webkit-scrollbar {
+    display: none;
+  }
 
 .movies {
     /* background-color: black; */
     /* gap: 2px; */
+    width: 100%;
     height: 100%;
+    background-color: black;
+    border-radius: 30px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(460px,1fr));
-    /* grid-template-rows: repeat(auto-fit, minmax(600px, 1fr)); */
-    grid-template-rows: repeat(auto-fill, minmax(720px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(760px, 1fr));
     grid-auto-rows: 800px;
     justify-items: center;
+    /* overflow-y: auto; */
+    overflow-x: hidden;
 }
 
 .movie__box-wrapper {
-    /* background-color: white; */
-    height: 100%;
+    /* width: 460px; */
+    height: 760px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -148,13 +180,13 @@ form {
     height: 680px;
     background-color: whitesmoke;
     border-radius: 15px;
-    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.15);
-    margin: 0px 150px;
+    box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.202);
+    /* margin: 0px 150px; */
     cursor: pointer;
 }
 
 .movie__box:hover {
-    box-shadow: 0px 0px 20px 10px rgba(255, 25, 25, 0.15);
+    box-shadow: 0px 0px 15px 7px rgba(255, 199, 122, 0.441);
 }
 
 /* 화면 너비 740px 이하인 경우 */
@@ -182,10 +214,10 @@ form {
     gap: 10px;
 }
 
-/* .rate__box {
-    font-size: 0.95em;
+.rate__box {
+    font-size: 1em;
     font-weight: 600;
-} */
+}
 
     /* 부모 요소에 대한 사이즈가 정해져있어야 background 이미지가 작동함 */
 /* .movie__img {

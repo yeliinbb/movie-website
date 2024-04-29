@@ -11,7 +11,7 @@ const options = {
   //처음 가져온 API 형태
   fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
     .then(response => response.json()) //json으로 파싱. 데이터 주고 받을 떄 주로 사용.
-    .then(response => console.log(response)) //파싱된 형태여서 js에서 사용 가능.
+    .then(response => console.log(response)) //파싱된 형태여서 js에서 사용 가능. 위의 then 함수에서의 이름과 구분하기 위해 인자 이름을 data로 변경해서 주로 사용함.
     .catch(err => console.error(err));
 
 

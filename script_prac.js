@@ -51,7 +51,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
 // console.log(movie_list); //undefined : 되는 이유는 아직 데이터 값을 받아오지 못해서, 데이터를 받아오는 시간이 필요하기 때문이다.
 
-const movieBoxWrapper = document.querySelectorAll(".movie__box-wrapper");
+// const movieBoxWrapper = document.querySelectorAll(".movie__box-wrapper");
 const movieCardsBox = document.querySelector(".movies");
 const movieCards = document.querySelectorAll(".movie__box"); //박스들 가져오기?
 const form = document.querySelector("form");
@@ -78,30 +78,54 @@ const onSubmit = (event) => {
   const movieBoxWrapper = document.querySelectorAll(".movie__box-wrapper");
 //   console.log(movieBoxWrapper); //nodelist 배열 메소드 바로 사용 불가
 
-  //방법 (1) forEach
-  movieBoxWrapper.forEach(element => {
-    const newMovieTexts = element.textContent.toLowerCase();
-    if (newMovieTexts.includes(inputValueLowercase)) {
-      element.style.display = '';
-    } else {
-      element.style.display = 'none';
-    }
-  });
+/* ----------------------------------- */
+
+  //방법 (1) for 반복문
+  //배열 순회하면서 input값이 없는 text는 "display : none" 으로 바꿔주기
+//   for(let i = 0; i < movieBoxWrapper.length; i++) {
+//     const element = movieBoxWrapper[i]
+//     const newMovieTexts = element.textContent.toLowerCase();
+
+//     if (newMovieTexts.includes(inputValueLowercase)) {
+//       movieBoxWrapper[i].style.display = '';
+//     } else {
+//       movieBoxWrapper[i].style.display = 'none';
+//     }
+//   }    
+
+/* ----------------------------------- */
+
+  //방법 (2) forEach
+//   movieBoxWrapper.forEach(element => {
+//     const newMovieTexts = element.textContent.toLowerCase();
+//     if (newMovieTexts.includes(inputValueLowercase)) {
+//       element.style.display = '';
+//     } else {
+//       element.style.display = 'none';
+//     }
+//   });
+
+/* ----------------------------------- */
 
     // querySelectorAll returns a NodeList not an Array. You can convert it to an Array if you'd like to use Array methods.
     //array가 아닌 형태를 배열로 가져오는 방법
     // var items = document.querySelectorAll('li');
     // var itemsArray = Array.from(items); 
 
-    //   방법 (2) filter()
+//   방법 (3) filter()
 //   array가 아닌 형태를 배열로 가져옴.
-//   const movieBoxWrapperArr = Array.from(movieBoxWrapper);
+  const movieBoxWrapperArr = Array.from(movieBoxWrapper);
 //   console.log(movieBoxWrapperArr);
-//   const Filtered = movieBoxWrapperArr.filter(element => {
-//     const newMovieTexts = element.textContent.toLowerCase();
-//     element.textContent.includes(inputValueLowercase)
-//     }); 
-//   console.log(Filtered);
+  console.log(movieBoxWrapperArr[0]);
+  //filter()메소느는 Nodelist 배열 사용 불가하기 때문에 배열로 바꿔주는 작업 필요함.
+//   const movieBoxWrapperArr = [... movieBoxWrapper];
+  const Filtered = movieBoxWrapperArr.filter(element => {
+    const newMovieTexts = element.textContent.toLowerCase();
+    newMovieTexts.indexOf(inputValueLowercase)
+    }); 
+  console.log(Filtered);
+  
+/* ----------------------------------- */
 
 }
 
@@ -121,9 +145,14 @@ form.addEventListener("submit", onSubmit);
 
 //적용 안되는 이유는?
 function movieCardClick (a) {
-  alert("영화 id : " + a);
+    if(a) {
+        alert("영화 id : " + a);
+    }
 }
 
-movieBoxWrapper.forEach((element) => {
-  element.addEventListener("click", () => movieCardClick(element.getAttribute("id")))}
+document.querySelectorAll(".movie__box-wrapper").forEach((element) => {
+  const id = element.getAttribute("id");
+  console.log(id);
+  element.addEventListener("click", () => movieCardClick(element.getAttribute(id)))}
 );
+
