@@ -57,6 +57,7 @@ const btn = document.querySelector(".search__btn");
 
 // console.dir(input);
 
+// 검색 기능 구현
 const onSubmit = (event) => {
   event.preventDefault()
   const inputValue = input.value;
@@ -71,20 +72,56 @@ const onSubmit = (event) => {
   //movie_list_values에 inputValue값이 있다면, 없는 나머지를 제외해주기
 
   //지역 변수로 사용
-  const movieBoxWrapper = document.querySelectorAll(".movie__box-wrapper");
-  
-  //배열 순회하면서 input값이 없는 text는 "display : none" 으로 바꿔주기
-  for(let i = 0; i < movieBoxWrapper.length; i++) {
-    const element = movieBoxWrapper[i]
-    const newMovieTexts = element.textContent.toLowerCase();
+  const movieBoxWrapper = document.querySelectorAll(".movie__box-wrapper");  
 
-    if (newMovieTexts.includes(inputValueLowercase)) {
-      movieBoxWrapper[i].style.display = '';
-    } else {
-      movieBoxWrapper[i].style.display = 'none';
-    }
-  }      
+    /* ----------------------------------- */
 
+    //방법 (1) for 반복문
+    //배열 순회하면서 input값이 없는 text는 "display : none" 으로 바꿔주기
+  //   for(let i = 0; i < movieBoxWrapper.length; i++) {
+  //     const element = movieBoxWrapper[i]
+  //     const newMovieTexts = element.textContent.toLowerCase();
+
+  //     if (newMovieTexts.includes(inputValueLowercase)) {
+  //       movieBoxWrapper[i].style.display = '';
+  //     } else {
+  //       movieBoxWrapper[i].style.display = 'none';
+  //     }
+  //   }    
+
+  /* ----------------------------------- */
+
+    //방법 (2) forEach
+    movieBoxWrapper.forEach(element => {
+      const newMovieTexts = element.textContent.toLowerCase();
+      if (newMovieTexts.includes(inputValueLowercase)) {
+        element.style.display = '';
+      } else {
+        element.style.display = 'none';
+      }
+    });
+
+  /* ----------------------------------- */
+
+      // querySelectorAll returns a NodeList not an Array. You can convert it to an Array if you'd like to use Array methods.
+      //array가 아닌 형태를 배열로 가져오는 방법
+      // var items = document.querySelectorAll('li');
+      // var itemsArray = Array.from(items); 
+
+  // //   방법 (3) filter()
+  // //   array가 아닌 형태를 배열로 가져옴.
+  // const movieBoxWrapperArr = Array.from(movieBoxWrapper);
+  // //   console.log(movieBoxWrapperArr);
+  //   console.log(movieBoxWrapperArr[0]);
+  //   //filter()메소느는 Nodelist 배열 사용 불가하기 때문에 배열로 바꿔주는 작업 필요함.
+  // //   const movieBoxWrapperArr = [... movieBoxWrapper];
+  //   const Filtered = movieBoxWrapperArr.filter(element => {
+  //     const newMovieTexts = element.textContent.toLowerCase();
+  //     newMovieTexts.indexOf(inputValueLowercase)
+  //     }); 
+  //   console.log(Filtered);
+    
+  /* ----------------------------------- */
 }
 
 form.addEventListener("submit", onSubmit);
