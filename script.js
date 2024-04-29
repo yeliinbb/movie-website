@@ -25,7 +25,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
       movie_list_values.forEach(element => {
         document.querySelector(".movies").innerHTML += `
         <div class="movie__box-wrapper" id="${element.id}">
-        <div class="movie__box" onclick="alert('영화 id : ${element.id}')" >
+        <div class="movie__box" onclick="alert('영화 id는 ${element.id} 입니다.')" >
             <div class="movie__contents" token interpolation="('${element.id}')">
                 <div class="movie__content">
                     <img class="movie__img" src=${`https://image.tmdb.org/t/p/w400` + element.poster_path} >
@@ -47,7 +47,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 // movie_list = new Array(response);
 // console.log(movie_list); //undefined : 되는 이유는 아직 데이터 값을 받아오지 못해서, 데이터를 받아오는 시간이 필요하기 때문이다.
 
-const movieBoxWrapper = document.querySelectorAll(".movie__box-wrapper");
+
 const movieCardsBox = document.querySelector(".movies");
 const movieCards = document.querySelectorAll(".movie__box"); //박스들 가져오기?
 const form = document.querySelector("form");
