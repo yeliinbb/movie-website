@@ -54,11 +54,11 @@ body {
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .header > h1 {
-    height: 20px;
+    height: 2em;
     font-size: 3em;
     font-weight: 600;
     text-align: center;
-    margin-bottom: 27px;
+    margin-bottom: 0.5em;
     box-sizing: border-box;
   }
 }
@@ -66,11 +66,11 @@ body {
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px) */
 @media screen and (max-width: 767px) {
   .header > h1 {
-    height: 20px;
-    font-size: 29px;
+    height: 3em;
+    font-size: 2em;
     font-weight: 600;
     text-align: center;
-    margin-bottom: 10px;
+    padding-top: 0.5em;
     box-sizing: border-box;
   }
   .search__title {
@@ -138,6 +138,8 @@ form {
   padding-top: 3px;
   overflow-y: scroll;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
 }
 
 /* ( 크롬, 사파리, 오페라, 엣지 ) 동작 */
@@ -159,6 +161,7 @@ form {
   justify-items: center;
   /* overflow-y: auto; */
   overflow-x: hidden;
+  justify-self: center;
 }
 
 .movie__box-wrapper {
