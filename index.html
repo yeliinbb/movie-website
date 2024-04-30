@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie website</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <script type="module" src="script.js"></script>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="module" src="script_edit.js"></script>
+  </head>
+  <body>
     <script src="https://kit.fontawesome.com/748fe0d700.js" crossorigin="anonymous"></script>
     <header class="header">
-        <h1 >The Best Movie Collections</h1>
-        <div class="search__box">
-            <form>
-                <label for="search" class="search__title">Search Movie</label>
-                <input type="text" id="search" placeholder="영화 제목을 검색해보세요" autofocus/>
-                <button class="search__btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-        </div>
+      <h1>The Best Movie Collections</h1>
+      <div class="search__box">
+        <form>
+          <label for="search" class="search__title">Search Movie</label>
+          <input type="text" id="search" placeholder="영화 제목을 검색해보세요" autofocus />
+          <button class="search__btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+      </div>
     </header>
     <div class="empty"></div>
     <main class="main scroll">
-        <div class="movies" id="movies">
-        </div>
+      <ul class="movies" id="movies"></ul>
     </main>
-</body>
+  </body>
 </html>
