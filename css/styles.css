@@ -7,219 +7,217 @@
   } */
 
 body {
-    margin-top: 0%;
-    padding: 2px;
-    width: 100vw;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-    overflow-x: hidden;
-    box-sizing: border-box;
-    background-color: #F4F5C1;
-    /* body에 grid를 쓰는 것은 좋지 않다. */
-    /* display: grid; */
-    /* grid-template-rows: 1fr max-content; */
+  margin-top: 0%;
+  padding: 2px;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  background-color: #f4f5c1;
+  /* body에 grid를 쓰는 것은 좋지 않다. */
+  /* display: grid; */
+  /* grid-template-rows: 1fr max-content; */
 }
 
-
-
 .header {
-    color: #F4F5C1;
-    width: 100vw;
-    height: 180px;
-    /* height: fit-content; */
-    position: fixed;
-    top: 1;
-    z-index: 99;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  color: #f4f5c1;
+  width: 100vw;
+  height: 180px;
+  /* height: fit-content; */
+  position: fixed;
+  top: 1;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 브라우저 자체에 적용되는 h1에 대한 레이아웃 값이 있기 때문에 따로 마진 적용 */
 /* 헤더 높이 px로 쓰려면 높이갚 고정 필요 */
 .header > h1 {
-    background-color: black;
-    padding-top: 15px;
-    box-sizing: border-box;
-    width: 100%;
-    text-align: center;
-    border-radius: 30px;
-    height: 90px;
-    font-size: 4.5em;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 3px;
+  background-color: black;
+  padding-top: 15px;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  border-radius: 30px;
+  height: 90px;
+  font-size: 4.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 3px;
 }
 
-/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/ 
-@media all and (min-width:768px) and (max-width:1023px) {
-    .header > h1 {
-        height: 20px;
-        font-size: 3em;
-        font-weight: 600;
-        text-align: center;
-        margin-bottom: 27px;
-        box-sizing: border-box;
-    }
-  } 
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  .header > h1 {
+    height: 20px;
+    font-size: 3em;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 27px;
+    box-sizing: border-box;
+  }
+}
 
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px) */
 @media screen and (max-width: 767px) {
-    .header > h1 {
-        height: 20px;
-        font-size: 29px;
-        font-weight: 600;
-        text-align: center;
-        margin-bottom: 10px;
-        box-sizing: border-box;
-    }
-    .search__title {
-        display: none;
-    }
+  .header > h1 {
+    height: 20px;
+    font-size: 29px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+    box-sizing: border-box;
   }
+  .search__title {
+    display: none;
+  }
+}
 
 /* 헤더 높이 px로 쓰려면 높이갚 고정 필요 */
 .search__box {
-    background-color: black;
-    border-radius: 30px;
-    width: 100%;
-    height: 90px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: black;
+  border-radius: 30px;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .search__title {
-    font-size: 1.7em;
-    font-weight: 600;
-    margin-right: 10px;
+  font-size: 1.7em;
+  font-weight: 600;
+  margin-right: 10px;
 }
 
 #search {
-    margin-right: 10px;
-    width: 320px;
-    height: 20px;
-    border: none;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
-    font-size: 1em;
-    font-weight: 400;
-    background-color: whitesmoke;
+  margin-right: 10px;
+  width: 320px;
+  height: 20px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
+  font-weight: 400;
+  background-color: whitesmoke;
 }
 
 .search__btn {
-    width: 45px;
-    height: 40px;
-    border-radius: 10px;
-    background-color: whitesmoke;
-    color: black;
-    font-size: 1em;
-    font-weight: 500;
+  width: 45px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  color: black;
+  font-size: 1em;
+  font-weight: 500;
 }
 
 .search__btn:hover {
-    background-color: #F40101;
+  background-color: #f40101;
 }
 
 .empty {
-    height: 180px;
+  height: 180px;
 }
 
 .main {
-    width: 100vw;
-    height: calc(100vh - 180px);
-    padding-top: 3px;
-    overflow-y: scroll;
-    box-sizing: border-box;
+  width: 100vw;
+  height: calc(100vh - 180px);
+  padding-top: 3px;
+  overflow-y: scroll;
+  box-sizing: border-box;
 }
 
 /* ( 크롬, 사파리, 오페라, 엣지 ) 동작 */
 .scroll::-webkit-scrollbar {
-    display: none;
-  }
+  display: none;
+}
 
 .movies {
-    /* background-color: black; */
-    /* gap: 2px; */
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    border-radius: 30px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(460px,1fr));
-    grid-template-rows: repeat(auto-fill, minmax(760px, 1fr));
-    grid-auto-rows: 800px;
-    justify-items: center;
-    /* overflow-y: auto; */
-    overflow-x: hidden;
+  /* background-color: black; */
+  /* gap: 2px; */
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  border-radius: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(760px, 1fr));
+  grid-auto-rows: 800px;
+  justify-items: center;
+  /* overflow-y: auto; */
+  overflow-x: hidden;
 }
 
 .movie__box-wrapper {
-    /* width: 460px; */
-    height: 760px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /* width: 460px; */
+  height: 760px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 원하는 사이즈의 무비 박스를 정해두고, 내용물이 넘치면 보이지 않도록 한다. */
 .movie__box {
-    width: 300px;
-    /* 컨텐츠에 박스 높이를 맞추고 싶을 때, 하지만 이럴 경우 박스 사이즈가 일정하지 않아 일단은 사용 x */
-    /* height: fit-content; */
-    height: 680px;
-    background-color: whitesmoke;
-    border-radius: 15px;
-    box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.202);
-    /* margin: 0px 150px; */
-    cursor: pointer;
+  width: 300px;
+  /* 컨텐츠에 박스 높이를 맞추고 싶을 때, 하지만 이럴 경우 박스 사이즈가 일정하지 않아 일단은 사용 x */
+  /* height: fit-content; */
+  height: 680px;
+  background-color: whitesmoke;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px 5px rgba(255, 255, 255, 0.202);
+  /* margin: 0px 150px; */
+  cursor: pointer;
 }
 
 .movie__box:hover {
-    box-shadow: 0px 0px 15px 7px rgba(255, 199, 122, 0.441);
+  box-shadow: 0px 0px 15px 7px rgba(255, 199, 122, 0.441);
 }
 
 /* 화면 너비 740px 이하인 경우 */
 @media screen and (max-width: 740px) {
-    .movie__box {
-        height: 680px;
-    }
+  .movie__box {
+    height: 680px;
   }
+}
 
 .movie__contents {
-    /* 높이값이 정해져있어야 여백이 생기기 때문에 자식요소에 justify-content를 사용할 수 있음 */
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    box-sizing: border-box;
-    gap: 10px;
+  /* 높이값이 정해져있어야 여백이 생기기 때문에 자식요소에 justify-content를 사용할 수 있음 */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+  gap: 10px;
 }
 
 .movie__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .rate__box {
-    font-size: 1em;
-    font-weight: 600;
+  font-size: 1em;
+  font-weight: 600;
 }
 
-    /* 부모 요소에 대한 사이즈가 정해져있어야 background 이미지가 작동함 */
+/* 부모 요소에 대한 사이즈가 정해져있어야 background 이미지가 작동함 */
 /* .movie__img {
     width: 100%;
     height: 100%;
@@ -229,36 +227,35 @@ form {
 } */
 
 img {
-    object-fit: cover;
-    width: 100%;
-    border-radius: 10px;
-    max-width: 100%;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 10px;
+  max-width: 100%;
 }
 
 .movie__title {
-    font-size: 1.1em;
-    font-weight: 700;
+  font-size: 1.1em;
+  font-weight: 700;
 }
 
 .movie__sum {
-    font-size: 0.95em;
-    font-weight: 400;
-    line-height: 120%;
-    /* height: 110px;
+  font-size: 0.95em;
+  font-weight: 400;
+  line-height: 120%;
+  /* height: 110px;
     overflow: hidden; */
-    /* 로 ... 을 만들기  */
-    text-overflow: ellipsis;  	
-    /* 아래줄로 내려가는 것을 막기위해 */
-    /* white-space: nowrap; */
-    /* 줄바꿈을 할때 단어를 기준으로 설정 */
-    word-break:break-all;
+  /* 로 ... 을 만들기  */
+  text-overflow: ellipsis;
+  /* 아래줄로 내려가는 것을 막기위해 */
+  /* white-space: nowrap; */
+  /* 줄바꿈을 할때 단어를 기준으로 설정 */
+  word-break: break-all;
 }
 
 .movie__rate {
-    font-size: 0.95em;
-    font-weight: 600;
+  font-size: 0.95em;
+  font-weight: 600;
 }
-
 
 /* body{
     -ms-overflow-style: none;
@@ -267,10 +264,10 @@ img {
    ::-webkit-scrollbar {
      display: none;
    } */
-   
-   /*특정 부분 스크롤바 없애기*/
-   
-   /* .box{
+
+/*특정 부분 스크롤바 없애기*/
+
+/* .box{
       -ms-overflow-style: none;
    }
    .box::-webkit-scrollbar{
